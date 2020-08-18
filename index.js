@@ -8,7 +8,7 @@ let count = 0
 class Watcher extends EventEmitter {
   constructor (subscriber, channel) {
     super()
-   
+
     this.id = `${Math.random()}-${process.pid}-${count++}`
     this.channel = channel
     this.subscriber = subscriber

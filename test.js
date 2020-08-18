@@ -9,7 +9,7 @@ const { test } = require('tap')
 const { promisify } = require('util')
 const sleep = promisify(setTimeout)
 
-const connectionString = "postgresql://postgres:postgres@localhost:5432/postgres"
+const connectionString = 'postgresql://postgres:postgres@localhost:5432/postgres'
 
 async function build (t, migrate) {
   const [adapter, watcher] = await Promise.all([
@@ -52,12 +52,12 @@ test('works!', async (t) => {
 
   await sleep(500)
 
-  t.is(await enforcer2.enforce("alice", "domain1", "data1", "read"), true)
-  t.is(await enforcer2.enforce("bob", "domain2", "data2", "read"), false)
+  t.is(await enforcer2.enforce('alice', 'domain1', 'data1', 'read'), true)
+  t.is(await enforcer2.enforce('bob', 'domain2', 'data2', 'read'), false)
 
   await enforcer2.addGroupingPolicy('bob', 'admin', 'domain2')
 
   await sleep(500)
 
-  t.is(await enforcer1.enforce("bob", "domain2", "data2", "read"), true)
+  t.is(await enforcer1.enforce('bob', 'domain2', 'data2', 'read'), true)
 })
