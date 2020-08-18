@@ -1,0 +1,37 @@
+{
+  "name": "casbin-pg-watcher",
+  "version": "0.0.1",
+  "description": "A casbin watcher based on PostgreSQL NOTIFY",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && tap test.js",
+    "postgres": "docker run -p 5432:5432 --name casbin -e POSTGRES_PASSWORD=postgres -d postgres:11-alpine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcollina/casbin-pg-watcher.git"
+  },
+  "keywords": [
+    "casbin",
+    "posgresql",
+    "postgre",
+    "sql",
+    "watcher",
+    "postgres"
+  ],
+  "author": "Matteo Collina <hello@matteocollina.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcollina/casbin-pg-watcher/issues"
+  },
+  "homepage": "https://github.com/mcollina/casbin-pg-watcher#readme",
+  "devDependencies": {
+    "casbin": "^5.1.2",
+    "casbin-pg-adapter": "^1.4.0",
+    "standard": "^14.3.4",
+    "tap": "^14.10.8"
+  },
+  "dependencies": {
+    "pg-listen": "^1.6.0"
+  }
+}
