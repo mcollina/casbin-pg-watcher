@@ -1,6 +1,6 @@
 {
   "name": "casbin-pg-watcher",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A casbin watcher based on PostgreSQL NOTIFY",
   "main": "index.js",
   "scripts": {
