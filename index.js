@@ -13,6 +13,7 @@ class Watcher extends EventEmitter {
     this.channel = channel
     this.subscriber = subscriber
     this.refresh = noop
+    this.closed = true
 
     subscriber.notifications.on(channel, (payload) => {
       if (payload.source !== this.id) {
@@ -25,14 +26,23 @@ class Watcher extends EventEmitter {
     })
   }
 
-  update () {
-    return this.subscriber.notify(this.channel, {
-      source: this.id,
-      now: new Date()
-    })
+  async update () {
+    try {
+      await this.subscriber.notify(this.channel, {
+        source: this.id,
+        now: new Date()
+      })
+    } catch (err) {
+      if (!this.closed) {
+        throw err
+      }
+    }
+    return true
   }
 
   close () {
+    this.closed = true
+    this.refresh = noop
     return this.subscriber.close()
   }
 

@@ -61,3 +61,15 @@ test('works!', async (t) => {
 
   t.is(await enforcer1.enforce('bob', 'domain2', 'data2', 'read'), true)
 })
+
+test('shutdown properly', async (t) => {
+  // enforcer2 is ignored
+  const [enforcer1] = await pair(t)
+
+  await enforcer1.addPolicy('admin', 'domain1', 'data1', 'read')
+  await enforcer1.addPolicy('admin', 'domain2', 'data2', 'read')
+  await enforcer1.addPolicy('admin', 'domain2', 'data2', 'write')
+  await enforcer1.addGroupingPolicy('alice', 'admin', 'domain1')
+
+  t.is(await enforcer1.enforce('alice', 'domain1', 'data1', 'read'), true)
+})
