@@ -73,3 +73,13 @@ test('shutdown properly', async (t) => {
 
   t.is(await enforcer1.enforce('alice', 'domain1', 'data1', 'read'), true)
 })
+
+test('tracks closed properly', async (t) => {
+  const watcher = await newWatcher({
+    connectionString
+  })
+  t.is(watcher.closed, false)
+
+  watcher.close()
+  t.is(watcher.closed, true)
+})
