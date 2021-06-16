@@ -83,3 +83,17 @@ test('tracks closed properly', async (t) => {
   watcher.close()
   t.is(watcher.closed, true)
 })
+
+test('supports connection object', async (t) => {
+  const watcher = await newWatcher({
+    host: 'localhost',
+    port: 5432,
+    user: 'postgres',
+    password: 'postgres',
+    database: 'postgres'
+  })
+
+  t.is(await watcher.update(), true)
+
+  watcher.close()
+})

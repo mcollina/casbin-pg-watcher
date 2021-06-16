@@ -51,8 +51,8 @@ class Watcher extends EventEmitter {
   }
 }
 
-async function newWatcher ({ connectionString, channel = 'casbin' }) {
-  const subscriber = createSubscriber({ connectionString })
+async function newWatcher ({ channel = 'casbin', ...connectionConfig }) {
+  const subscriber = createSubscriber(connectionConfig)
   await subscriber.connect()
   await subscriber.listenTo(channel)
 
